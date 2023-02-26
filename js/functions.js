@@ -33,20 +33,20 @@ const isPalindrom = (string) => {
   return tempString === reverseString;
 };
 
-// имяФункции('Лёша на полке клопа нашёл '); // true
+//// имяФункции('Лёша на полке клопа нашёл '); // true
 
-const isPalindrom = (string) => {
-  const tempString = string
-    .toLowerCase()
-    .replaceAll(' ', '');
+//const isPalindrom = (string) => {
+//  const tempString = string
+//    .toLowerCase()
+//    .replaceAll(' ', '');
 
-  let reverseString = '';
-    for (let i = tempString.length - 1; i >= 0; i--) {
-      reverseString += tempString.at(i);
-    }
-  console.log(reverseString);
-  return tempString === reverseString;
-  };
+//  let reverseString = '';
+//    for (let i = tempString.length - 1; i >= 0; i--) {
+//      reverseString += tempString.at(i);
+//    }
+//  console.log(reverseString);
+//  return tempString === reverseString;
+//  };
 
 // Функция #3: принимает строку, извлекает цифры от 0 до 9 и возвращает их в виде целого положительного числа
 // имяФункции('2023 год');            // 2023
@@ -56,6 +56,10 @@ const isPalindrom = (string) => {
 // имяФункции('а я томат');           // NaN
 
 const extractNumber = (string) => {
+  if (typeof string === 'number') {
+    return string;
+  }
+
   let result = '';
   for (let i = 0; i < string.length; i++) {
     // шаг 1. преобразовываем символы к числу шаг2.проверяем, если это не NaN - записываем в 'result'
@@ -63,5 +67,22 @@ const extractNumber = (string) => {
     result += string.at(i);
   }
 }
-return parseInt(result,10);
+return parseInt(result, 10);
 }
+
+// Функция #4: принимает 3 параметра: исходную строку, минимальную длину и строку с добавочными символами — и возвращает исходную строку, дополненную указанными символами до заданной длины.
+
+// Добавочный символ использован один раз
+// имяФункции('1', 2, '0');      // '01'
+
+// Добавочный символ использован три раза
+// имяФункции('1', 4, '0');      // '0001'
+
+// Добавочные символы обрезаны с конца
+// имяФункции('q', 4, 'werty');  // 'werq'
+
+// Добавочные символы использованы полтора раза
+// имяФункции('q', 4, 'we');     // 'wweq'
+
+// Добавочные символы не использованы, исходная строка не изменена
+// имяФункции('qwerty', 4, '0'); // 'qwerty'

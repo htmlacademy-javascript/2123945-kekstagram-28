@@ -33,20 +33,20 @@ const isPalindrom = (string) => {
   return tempString === reverseString;
 };
 
-//// имяФункции('Лёша на полке клопа нашёл '); // true
+// имяФункции('Лёша на полке клопа нашёл '); // true
 
-//const isPalindrom = (string) => {
-//  const tempString = string
-//    .toLowerCase()
-//    .replaceAll(' ', '');
+const isPalindrom = (string) => {
+  const tempString = string
+    .toLowerCase()
+    .replaceAll(' ', '');
 
-//  let reverseString = '';
-//    for (let i = tempString.length - 1; i >= 0; i--) {
-//      reverseString += tempString.at(i);
-//    }
-//  console.log(reverseString);
-//  return tempString === reverseString;
-//  };
+  let reverseString = '';
+    for (let i = tempString.length - 1; i >= 0; i--) {
+      reverseString += tempString.at(i);
+    }
+  console.log(reverseString);
+  return tempString === reverseString;
+  };
 
 // Функция #3: принимает строку, извлекает цифры от 0 до 9 и возвращает их в виде целого положительного числа
 // имяФункции('2023 год');            // 2023
@@ -86,3 +86,12 @@ const extractNumber = (string) => {
 
 // Добавочные символы не использованы, исходная строка не изменена
 // имяФункции('qwerty', 4, '0'); // 'qwerty'
+
+const myPadStart = (string, minLength, pad) => {
+  // Находим длину добавочной строки
+  const actualPad = minLength - string.length;
+  if (actualPad <= 0) {
+    return string;
+  }
+    return pad.slice(0, actualPad % pad.length) + pad.repeat(actualPad / pad.length) + string;
+}

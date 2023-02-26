@@ -64,11 +64,11 @@ const extractNumber = (string) => {
   for (let i = 0; i < string.length; i++) {
     // шаг 1. преобразовываем символы к числу шаг2.проверяем, если это не NaN - записываем в 'result'
     if (!Number.isNaN(parseInt(string.at(i),10))) {
-    result += string.at(i);
+      result += string.at(i);
+    }
   }
-}
-return parseInt(result, 10);
-}
+  return parseInt(result, 10);
+};
 
 // Функция #4: принимает 3 параметра: исходную строку, минимальную длину и строку с добавочными символами — и возвращает исходную строку, дополненную указанными символами до заданной длины.
 

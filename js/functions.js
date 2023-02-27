@@ -14,7 +14,7 @@ const isLessOrEqual = (string, length) => {
   }
 };
 
-console.log(isLessOrEqual('hello', 12))
+isLessOrEqual('проверяемая строка', 20);
 
 // Функция #2: проверка, является ли строка палиндромом
 // Строка является палиндромом
@@ -38,17 +38,16 @@ console.log(isLessOrEqual('hello', 12))
 // имяФункции('Лёша на полке клопа нашёл '); // true
 
 const isPalindrom = (string) => {
-  const tempString = string
-    .toLowerCase()
-    .replaceAll(' ', '');
+  const tempString = string.toLowerCase().replaceAll(' ', '');
 
   let reverseString = '';
-    for (let i = tempString.length - 1; i >= 0; i--) {
-      reverseString += tempString.at(i);
-    }
-  console.log(reverseString);
+  for (let i = tempString.length - 1; i >= 0; i--) {
+    reverseString += tempString.at(i);
+  }
   return tempString === reverseString;
-  };
+};
+
+isPalindrom('Лёша на полке клопа нашёл ');
 
 // Функция #3: принимает строку, извлекает цифры от 0 до 9 и возвращает их в виде целого положительного числа
 // имяФункции('2023 год');            // 2023
@@ -65,12 +64,14 @@ const extractNumber = (string) => {
   let result = '';
   for (let i = 0; i < string.length; i++) {
     // шаг 1. преобразовываем символы к числу шаг2.проверяем, если это не NaN - записываем в 'result'
-    if (!Number.isNaN(parseInt(string.at(i),10))) {
+    if (!Number.isNaN(parseInt(string.at(i), 10))) {
       result += string.at(i);
     }
   }
   return parseInt(result, 10);
 };
+
+extractNumber('2023 год');
 
 // Функция #4: принимает 3 параметра: исходную строку, минимальную длину и строку с добавочными символами — и возвращает исходную строку, дополненную указанными символами до заданной длины.
 
@@ -95,5 +96,11 @@ const myPadStart = (string, minLength, pad) => {
   if (actualPad <= 0) {
     return string;
   }
-    return pad.slice(0, actualPad % pad.length) + pad.repeat(actualPad / pad.length) + string;
-}
+  return (
+    pad.slice(0, actualPad % pad.length) +
+    pad.repeat(actualPad / pad.length) +
+    string
+  );
+};
+
+myPadStart('1', 2, '0');

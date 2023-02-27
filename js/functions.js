@@ -14,6 +14,8 @@ const isLessOrEqual = (string, length) => {
   }
 };
 
+console.log(isLessOrEqual('hello', 12))
+
 // Функция #2: проверка, является ли строка палиндромом
 // Строка является палиндромом
 // имяФункции('топот'); // true
@@ -22,16 +24,16 @@ const isLessOrEqual = (string, length) => {
 // Это не палиндром
 // имяФункции('Кекс');  // false
 
-const isPalindrom = (string) => {
-  const tempString = string.toLowerCase();
+//const isPalindrom = (string) => {
+//  const tempString = string.toLowerCase();
 
-  let reverseString = '';
-  for (let i = tempString.length - 1; i >= 0; i--) {
-    reverseString += tempString.at(i);
-  }
-  console.log(reverseString);
-  return tempString === reverseString;
-};
+//  let reverseString = '';
+//  for (let i = tempString.length - 1; i >= 0; i--) {
+//    reverseString += tempString.at(i);
+//  }
+//  console.log(reverseString);
+//  return tempString === reverseString;
+//};
 
 // имяФункции('Лёша на полке клопа нашёл '); // true
 

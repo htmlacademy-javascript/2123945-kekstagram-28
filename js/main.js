@@ -13,8 +13,8 @@ const PICTURE_COUNT = 25;
 const AVATAR_COUNT = 6;
 const LIKES_MIN_COUNT = 15;
 const LIKES_MAX_COUNT = 200;
-
-const MESSAGES = [
+const COMMENT_COUNT = 20;
+const COMMENT_LINES = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -31,7 +31,7 @@ const DESCRIPTIONS = [
   'В нашей семье пополнение - новый друг - пушистик Лакки #goldenretriever',
   'Дети - цветы жизни #любовь #семья #счастье',
   'Наши веселые будни #прогулка #радость #мокрыелапы'
-]
+];
 
 const NAMES = [
   'Никита',
@@ -61,7 +61,7 @@ const NAMES = [
   'Дамир',
 ];
 
-const SIMILAR_PHOTO_DESCRIPTIONS_COUNT = 25;
+// Вспомогательная функция #1 - поиск рандомного числа
 
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
@@ -70,28 +70,45 @@ const getRandomInteger = (a, b) => {
   return Math.floor(result);
 };
 
-const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
+// Вспомогательная функция #2 - поиск рандомного элемента массива
 
-const createPhotoDescription = () => {
-  return {
-    id: '',
-    url: '',
-    description: '',
-    likes: '',
-    comments: '',
+const getRandomArrayElement = (array) =>
+  array[getRandomInteger(0, array.length - 1)];
+
+// Вспомогательная функция #3 - генерация ID
+
+function createIdGenerator = () => {
+  let lastGeneratedId = 0;
+
+  return  () => {
+    lastGeneratedId += 1;
+    return lastGeneratedId;
   };
-};
+}
+
+const generateCommentId = createIdGenerator();
+
+const createMessage = () =>
+  Array.from({length: getRandomInteger(1,2)}, () =>
+    getRandomArrayElement(COMMENT_LINES)
+  ).join(' ');
+
+const createPhotoDescription = () => ({
+  id: '',
+  url: '',
+  description: '',
+  likes: '',
+  comments: '',
+});
 
 const similarPhotoDescriptions = Array.from({length: SIMILAR_PHOTO_DESCRIPTIONS_COUNT}, createPhotoDescription);
 
-const createComment = () => {
-  return {
-    id: '',
-    avatar: '',
-    message: getRandomArrayElement(MESSAGES),
-    name: getRandomArrayElement(NAMES),
-  };
-};
+const createComment = () => ({
+  id: '',
+  avatar: '',
+  message: getRandomArrayElement(COMMENT_LINES),
+  name: getRandomArrayElement(NAMES),
+});
 
 console.log(
   createComment()

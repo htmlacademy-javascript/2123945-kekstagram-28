@@ -96,38 +96,24 @@ const createMessage = () =>
 const createComment = () => ({
   id: generateCommentId(),
   avatar: 'img/avatar-${getRandomInteger(1, AVATAR_COUNT)}.svg',
-  message: getRandomArrayElement(COMMENT_LINES),
+  message: createMessage(),
   name: getRandomArrayElement(NAMES),
 });
-
-console.log(
-  createComment()
-);
-
-
-// По ретро
 
 const createPicture = (index) => ({
   id: 'index',
   url: 'photos/${index}.jpg',
   description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomInteger(LIKES_MIN_COUNT, LIKES_MAX_COUNT),
-  comments: Array.from({length:getRandomInteger(0, COMMENT_COUNT)}, createComment),
+  comments: Array.from(
+    {length:getRandomInteger(0, COMMENT_COUNT)},
+    createComment
+    ),
 });
 
-const getPictures = () => {
+const getPictures = () =>
   Array.from({length: PICTURE_COUNT}, (_, pictureIndex) =>
     createPicture(pictureIndex + 1)
   );
-}
+
 getPictures();
-
-
-/ Структура каждого объекта:
-// id, число — идентификатор опубликованной фотографии. Это число от 1 до 25. Идентификаторы не должны повторяться.
-// url, строка — адрес картинки вида photos/{{i}}.jpg, где {{i}} — это число от 1 до 25. Адреса картинок не должны повторяться.
-// description, строка — описание фотографии. Описание придумайте самостоятельно.
-// likes, число — количество лайков, поставленных фотографии. Случайное число от 15 до 200.
-// comments, массив объектов — список комментариев, оставленных другими пользователями к этой фотографии. Количество комментариев к каждой фотографии вы определяете на своё усмотрение. Все комментарии генерируются случайным образом.
-// У каждого комментария есть идентификатор — id — любое число. Идентификаторы не должны повторяться.
-// Поле avatar — это строка, значение которой формируется по правилу img/avatar-{{случайное число от 1 до 6}}.svg. Аватарки подготовлены в директории img.

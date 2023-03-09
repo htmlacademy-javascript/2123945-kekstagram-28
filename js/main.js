@@ -77,10 +77,10 @@ const getRandomArrayElement = (array) =>
 
 // Вспомогательная функция #3 - генерация ID
 
-function createIdGenerator = () => {
+function createIdGenerator () {
   let lastGeneratedId = 0;
 
-  return  () => {
+  return () => {
     lastGeneratedId += 1;
     return lastGeneratedId;
   };
@@ -95,20 +95,20 @@ const createMessage = () =>
 
 const createComment = () => ({
   id: generateCommentId(),
-  avatar: 'img/avatar-${getRandomInteger(1, AVATAR_COUNT)}.svg',
+  avatar: `img/avatar-${getRandomInteger(1, AVATAR_COUNT)}.svg`,
   message: createMessage(),
   name: getRandomArrayElement(NAMES),
 });
 
 const createPicture = (index) => ({
-  id: 'index',
-  url: 'photos/${index}.jpg',
+  id: index,
+  url: `photos/${index}.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomInteger(LIKES_MIN_COUNT, LIKES_MAX_COUNT),
   comments: Array.from(
     {length:getRandomInteger(0, COMMENT_COUNT)},
     createComment
-    ),
+  ),
 });
 
 const getPictures = () =>

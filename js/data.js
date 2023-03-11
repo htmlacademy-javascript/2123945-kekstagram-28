@@ -9,7 +9,7 @@
 // У каждого комментария есть идентификатор — id — любое число. Идентификаторы не должны повторяться.
 // Поле avatar — это строка, значение которой формируется по правилу img/avatar-{{случайное число от 1 до 6}}.svg. Аватарки подготовлены в директории img.
 
-import {getRandomInteger, getRandomArrayElement} from './util.js';
+import {getRandomInteger, getRandomArrayElement, createIdGenerator} from './util.js';
 
 const PICTURE_COUNT = 25;
 const AVATAR_COUNT = 6;
@@ -63,17 +63,6 @@ const NAMES = [
   'Дамир',
 ];
 
-// Вспомогательная функция #3 - генерация ID
-
-function createIdGenerator () {
-  let lastGeneratedId = 0;
-
-  return () => {
-    lastGeneratedId += 1;
-    return lastGeneratedId;
-  };
-}
-
 const generateCommentId = createIdGenerator();
 
 const createMessage = () =>
@@ -104,4 +93,4 @@ const getPictures = () =>
     createPicture(pictureIndex + 1)
   );
 
-getPictures();
+export {getPictures};

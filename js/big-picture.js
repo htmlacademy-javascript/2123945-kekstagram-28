@@ -17,4 +17,30 @@ const createComment = ({ avatar, name, messsage }) => {
     comment.classList.add('social__comment');
 
     comment.querySelector('.social__picture').src = avatar;
+};
+
+const renderComments = () => {
+  commentsShown = COMMENTS_PER_PORTION;
+
+  if (commentsShown >= comments.length) {
+    commentsLoader.classList.add('hidden');
+    commentsShown = comments.length;
+  } else {
+    commentsLoader.classList.remove('hidden');
+  }
+
+  const fragment = document.createDocumentFragment();
+  for (let i = 0; i <= commentsShown; i++) {
+    const commentElement = createComment(comments[i]);
+    fragment.append(commentElement);
+  };
+
+  commentList.innerHTML = '';
+  commentList.append(fragment);
+  commentCount.innerHTML = `${commentsShown}` из <span>
+};
+
+const hideBigPicture = () => {
+  bigPicture.classList.add('hidden');
+
 }

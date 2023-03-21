@@ -11,9 +11,11 @@ const renderGallery = (pictures) => {
     }
 
     const picture = pictures.find(
-      (item) => item.id === thumbnail.dataset.thumbnailId);
+      (item) => item.id === +thumbnail.dataset.thumbnailId);
     showBigPicture(picture);
   });
 
   renderThumbnails(pictures, container);
 };
+
+export { renderGallery };

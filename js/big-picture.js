@@ -10,11 +10,11 @@ const cancelButton = document.querySelector('.big-picture__cancel');
 let commentsShown = 0;
 let comments = [];
 
-const createComment = ({ avatar, name, messsage }) => {
+const createComment = ({ avatar, name, message }) => {
   const comment = document.createElement('li');
   comment.innerHTML =
-    '<img class="social__picture" src="" alt="" width="35" height="35"'>'
-    comment.classList.add('social__comment');
+    '<img class="social__picture" src="" alt="" width="35" height="35"'>;
+    comment.classList.add('.social__comment');
     comment.querySelector('.social__picture').src = avatar;
     comment.querySelector('.social__picture').alt = name;
     comment.querySelector('.social__text').textContent = message;
@@ -66,7 +66,7 @@ const renderPictureDetails = ({ url, likes, description }) => {
   bigPicture.querySelector('.big-picture__img img').alt = description;
   bigPicture.querySelector('.likes-count').textContent = likes;
   bigPicture.querySelector('.social__caption').textContent = description;
-}
+};
 
 const showBigPicture = (data) => {
   bigPicture.classList.remove('hidden');
@@ -76,6 +76,6 @@ const showBigPicture = (data) => {
   document.addEventListener('keydown', onDocumentKeydown);
 
   renderPictureDetails(data);
-}
+};
 
 export { showBigPicture };

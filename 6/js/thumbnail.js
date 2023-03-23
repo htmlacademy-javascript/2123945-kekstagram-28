@@ -12,7 +12,7 @@ const createThumbnail = (picture) => {
   thumbnail.querySelector('.picture__img').src = picture.url;
   thumbnail.querySelector('.picture__img').alt = picture.description;
   thumbnail.querySelector('.picture__comments').textContent = picture.comments.length;
-  thumbnail.querySelector('.picture__likes').picture.textContent = picture.likes;
+  thumbnail.querySelector('.picture__likes').textContent = picture.likes;
   thumbnail.dataset.thumbnailId = picture.id;
 
   // Возвращаем новую уникальную миниатюру

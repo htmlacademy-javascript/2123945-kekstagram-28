@@ -1,4 +1,4 @@
-import {showBigPicture} from './big-picture';
-import { renderGallery } from './gallery';
+import { getPictures } from './data.js';
+import { renderGallery } from './gallery.js';
 
-showBigPicture(renderGallery());
+renderGallery(getPictures());

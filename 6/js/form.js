@@ -1,15 +1,15 @@
+const VALID_SYMBOLS = 9;
+const MAX_HASHTAG_COUNT = 5;
+const resetScale = ;
+const resetEffects = ;
 
+const TAG_ERROR_TEXT = 'Неправильно заполнены хэштеги';
 
-
-
-
-
-
-
-
-
-
-
+const form = document.querySelector('.img-upload__form');
+const overlay = document.querySelector('.img-upload__overlay');
+const body = document.querySelector('body');
+const cancelButton = document.querySelector('#upload__cancel');
+const fileField = document.querySelector('#upload-file');
 const hashtagField = document.querySelector('.text__hashtags');
 const commentField = document.querySelector('.text__description');
 
@@ -44,7 +44,7 @@ function onDocumentKeydown(evt) {
     evt.preventDefault();
     hideModal();
   }
-};
+}
 
 const onCancelButtonClick = () => {
   hideModal();

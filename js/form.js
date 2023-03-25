@@ -3,13 +3,13 @@
 
 
 
+const TAG_ERROR_TEXT = 'Неправильно заполнены хэштеги';
 
-
-
-
-
-
-
+const form = document.querySelector('.img-upload__form');
+const overlay = document.querySelector('.img-upload__overlay');
+const body = document.querySelector('body');
+const cancelButton = document.querySelector('#upload__cancel');
+const fileField = document.querySelector('#upload-file');
 const hashtagField = document.querySelector('.text__hashtags');
 const commentField = document.querySelector('.text__description');
 

@@ -1,7 +1,7 @@
-
-
-
-
+const VALID_SYMBOLS = 9;
+const MAX_HASHTAG_COUNT = 5;
+const resetScale = ;
+const resetEffects = ;
 
 const TAG_ERROR_TEXT = 'Неправильно заполнены хэштеги';
 
@@ -44,7 +44,7 @@ function onDocumentKeydown(evt) {
     evt.preventDefault();
     hideModal();
   }
-};
+}
 
 const onCancelButtonClick = () => {
   hideModal();

@@ -8,14 +8,12 @@ const body = document.querySelector('body');
 const cancelButton = document.querySelector('.big-picture__cancel');
 
 let commentsShown = 0;
-// почему пустой массив? состоит из comment?
-let comments = [];
 
 const createComment = ({ avatar, name, message }) => {
   const comment = document.createElement('li');
   comment.innerHTML =
-  '<img class="social__picture" src="" alt="" width="35" height="35">';
-  comment.classList.add('.social__comment');
+  '<img class="social__picture" src="" alt="" width="35" height="35"><p class="social__text">';
+  comment.classList.add('social__comment');
   comment.querySelector('.social__picture').src = avatar;
   comment.querySelector('.social__picture').alt = name;
   comment.querySelector('.social__text').textContent = message;
@@ -23,7 +21,7 @@ const createComment = ({ avatar, name, message }) => {
   return comment;
 };
 
-const renderComments = () => {
+const renderComments = (comments) => {
   commentsShown += COMMENTS_PER_PORTION;
 
   if (commentsShown >= comments.length) {
@@ -34,7 +32,7 @@ const renderComments = () => {
   }
 
   const fragment = document.createDocumentFragment();
-  for (let i = 0; i <= commentsShown; i++) {
+  for (let i = 0; i < commentsShown; i++) {
     const commentElement = createComment(comments[i]);
     fragment.append(commentElement);
   }
@@ -44,17 +42,20 @@ const renderComments = () => {
   commentCount.innerHTML = `${commentsShown}`;
 };
 
+const onCommentsLoaderClick = (comments) => {
+  renderComments(comments);
+};
+
 const hideBigPicture = () => {
   bigPicture.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
-  // state manager
   commentsShown = 0;
+  commentsLoader.removeEventListener ('click', onCommentsLoaderClick);
 };
 
 function onDocumentKeydown(evt) {
   if (evt.key === 'Escape') {
-    // что это может быть? гуглить по деф событию esc
     evt.preventDefault();
     hideBigPicture();
   }
@@ -62,10 +63,6 @@ function onDocumentKeydown(evt) {
 
 const onCancelButtonClick = () => {
   hideBigPicture();
-};
-
-const onCommentsLoaderClick = () => {
-  renderComments();
 };
 
 const renderPictureDetails = ({ url, likes, description }) => {
@@ -76,16 +73,17 @@ const renderPictureDetails = ({ url, likes, description }) => {
   bigPicture.querySelector('.social__caption').textContent = description;
 };
 
-const showBigPicture = (data) => {
+const showBigPicture = (picture) => {
   bigPicture.classList.remove('hidden');
   body.classList.add('modal-open');
   commentsLoader.classList.add('hidden');
   commentCount.classList.add('hidden');
   document.addEventListener('keydown', onDocumentKeydown);
   cancelButton.addEventListener('click', onCancelButtonClick);
+  commentsLoader.addEventListener ('click', () => onCommentsLoaderClick(picture.comments));
 
-  // data - откуда берем?
-  renderPictureDetails(data);
+  renderPictureDetails(picture);
+  renderComments(picture.comments);
 };
 
 export { showBigPicture };

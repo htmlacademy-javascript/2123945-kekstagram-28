@@ -68,7 +68,7 @@ const validateTags = (value) => {
     .trim()
     .split(' ')
     .filter((tag) => tag.trim().length);
-  return hasValidCount(tags) && hasUniqueTags(tags) && tags.every();
+  return hasValidCount(tags) && hasUniqueTags(tags) && tags.every(isValidTag);
 };
 
 pristine.addValidator (

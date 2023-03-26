@@ -94,6 +94,14 @@ const onEffectsChange = (evt) => {
   updateSlider();
 }
 
+const onSliderUpdate = () => {
+  const sliderValue = sliderElement.noUiSlider.get();
+  imageElement.style.filter = isDefault();
+  ? DEFAULT_EFFECT.style
+  : `${chosenEffect.style}{${sliderValue}${chosenEffect.unit})`;
+  effectLevelElement.value = sliderValue;
+};
+
 const resetEffects = () => {
   chosenEffect = DEFAULT_EFFECT;
   updateSlider();

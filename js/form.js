@@ -1,8 +1,8 @@
-const VALID_SYMBOLS = 9;
-const MAX_HASHTAG_COUNT = 5;
-const resetScale = ;
-const resetEffects = ;
+import { resetScale } from './scale.js';
+import { resetEffects } from './effect.js';
 
+const MAX_HASHTAG_COUNT = 5;
+const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
 const TAG_ERROR_TEXT = 'Неправильно заполнены хэштеги';
 
 const form = document.querySelector('.img-upload__form');

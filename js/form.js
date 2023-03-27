@@ -25,6 +25,7 @@ const pristine = new Pristine(form, {
   errorTextClass: 'img-upload__field-wrapper__error',
 });
 
+debugger;
 const showModal = () => {
   overlay.classList.remove('hidden');
   body.classList.add('modal-open');
@@ -60,26 +61,37 @@ const onFileInputChange = () => {
   showModal();
 };
 
+// Проверяет каждый тег на соответствие регулярному выражению
 const isValidTag = (tag) => VALID_SYMBOLS.test(tag);
 
+// Проверяет, что кол-во хэштегов до 5
 const hasValidCount = (tags) => tags.length <= MAX_HASHTAG_COUNT;
 
 const hasUniqueTags = (tags) => {
   const lowerCaseTags = tags.map((tag) => tag.toLowerCase());
+  // Set создает коллекцию из неповторяющихся элементов на основе массива lowerCaseTags
   return lowerCaseTags.length === new Set(lowerCaseTags).size;
 };
 
+// Значение value передает библиотека pristine = текущее значение
 const validateTags = (value) => {
+  // собираем в массив валидные хэштеги
   const tags = value
+    // хэштег обрезается в начале и конце
     .trim()
+    // хэштеги разделяются пробелами
     .split(' ')
+    // хэштег обрезается в начале и конце
     .filter((tag) => tag.trim().length);
   return hasValidCount(tags) && hasUniqueTags(tags) && tags.every(isValidTag);
 };
 
-pristine.addValidator (
+pristine.addValidator(
+  // поле, которое валидируем
   hashtagField,
+  // функция-валидатор
   validateTags,
+  // текст ошибки
   TAG_ERROR_TEXT
 );
 

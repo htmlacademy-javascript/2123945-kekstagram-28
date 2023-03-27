@@ -5,14 +5,18 @@ const MAX_HASHTAG_COUNT = 5;
 const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
 const TAG_ERROR_TEXT = 'Неправильно заполнены хэштеги';
 
-// Форма загрузки нового изображения
+// Форма
 const form = document.querySelector('.img-upload__form');
-// Форма редактирования изображения
+// Редактировать изображение
 const overlay = document.querySelector('.img-upload__overlay');
 const body = document.querySelector('body');
-const cancelButton = document.querySelector('#upload__cancel');
+// Кнопка закрытия формы редактирования изображения
+const cancelButton = document.querySelector('#upload-cancel');
+// Загрузить изображение
 const fileField = document.querySelector('#upload-file');
+// Добавить хэш-теги
 const hashtagField = document.querySelector('.text__hashtags');
+// Добавить комментарии
 const commentField = document.querySelector('.text__description');
 
 const pristine = new Pristine(form, {

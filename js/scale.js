@@ -3,9 +3,13 @@ const MIN_SCALE = 25;
 const MAX_SCALE = 100;
 const DEFAULT_SCALE = 100;
 
+// Кнопка уменьшить
 const smallerButtonElement = document.querySelector('.scale__control--smaller');
+// Кнопка увеличить
 const biggerButtonElement = document.querySelector('.scale__control--bigger');
+// Поле ввода значения размера изображения
 const scaleInputElement = document.querySelector('.scale__control--value');
+// Предварительный просмотр изображения
 const imageElement = document.querySelector('.img-upload__preview img');
 
 const scaleImage = (value) => {

@@ -5,7 +5,9 @@ const MAX_HASHTAG_COUNT = 5;
 const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
 const TAG_ERROR_TEXT = 'Неправильно заполнены хэштеги';
 
+// Форма загрузки нового изображения
 const form = document.querySelector('.img-upload__form');
+// Форма редактирования изображения
 const overlay = document.querySelector('.img-upload__overlay');
 const body = document.querySelector('body');
 const cancelButton = document.querySelector('#upload__cancel');

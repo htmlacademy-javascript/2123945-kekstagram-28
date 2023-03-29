@@ -9,7 +9,7 @@ const EFFECTS = [
   },
   {
     name: 'chrome',
-    style: 'greyscale',
+    style: 'grayscale',
     min: 0,
     max: 1,
     step: 0.1,
@@ -49,17 +49,17 @@ const EFFECTS = [
   },
 ];
 
-const DEFAULT_EFFECT = EFFECTS [0];
+const DEFAULT_EFFECT = EFFECTS[0];
 let chosenEffect = DEFAULT_EFFECT;
 
 // Предварительный просмотр изображения
 const imageElement = document.querySelector('.img-upload__preview img');
 // Наложение эффекта на изображение
-const effectsElement = document.querySelector('.effects');
+const effectsElement = document.querySelector('.effects__list');
 // Элемент, в котором надо создать слайдер
 const sliderElement = document.querySelector('.effect-level__slider');
 // Контейнер с эффектами
-const sliderContainerElement = document.querySelector('.img-upload__effects');
+const sliderContainerElement = document.querySelector('.effect-level');
 // Поле ввода значения глубины эффекта, накладываемого на изображение
 const effectLevelElement = document.querySelector('.effect-level__value');
 

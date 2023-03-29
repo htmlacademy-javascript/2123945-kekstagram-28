@@ -25,7 +25,6 @@ const pristine = new Pristine(form, {
   errorTextClass: 'img-upload__field-wrapper__error',
 });
 
-debugger;
 const showModal = () => {
   overlay.classList.remove('hidden');
   body.classList.add('modal-open');

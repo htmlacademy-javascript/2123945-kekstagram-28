@@ -8,6 +8,7 @@ const body = document.querySelector('body');
 const cancelButton = document.querySelector('.big-picture__cancel');
 
 let commentsShown = 0;
+let comments = [];
 
 const createComment = ({ avatar, name, message }) => {
   const comment = document.createElement('li');
@@ -21,7 +22,7 @@ const createComment = ({ avatar, name, message }) => {
   return comment;
 };
 
-const renderComments = (comments) => {
+const renderComments = () => {
   commentsShown += COMMENTS_PER_PORTION;
 
   if (commentsShown >= comments.length) {
@@ -42,8 +43,8 @@ const renderComments = (comments) => {
   commentCount.innerHTML = `${commentsShown}`;
 };
 
-const onCommentsLoaderClick = (comments) => {
-  renderComments(comments);
+const onCommentsLoaderClick = () => {
+  renderComments();
 };
 
 const hideBigPicture = () => {
@@ -74,16 +75,17 @@ const renderPictureDetails = ({ url, likes, description }) => {
 };
 
 const showBigPicture = (picture) => {
+  comments = picture.comments;
   bigPicture.classList.remove('hidden');
   body.classList.add('modal-open');
   commentsLoader.classList.add('hidden');
   commentCount.classList.add('hidden');
   document.addEventListener('keydown', onDocumentKeydown);
   cancelButton.addEventListener('click', onCancelButtonClick);
-  commentsLoader.addEventListener ('click', () => onCommentsLoaderClick(picture.comments));
+  commentsLoader.addEventListener ('click', onCommentsLoaderClick);
 
   renderPictureDetails(picture);
-  renderComments(picture.comments);
+  renderComments();
 };
 
 export { showBigPicture };

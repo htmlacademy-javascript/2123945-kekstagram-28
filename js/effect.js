@@ -58,8 +58,9 @@ const imageElement = document.querySelector('.img-upload__preview img');
 const effectsElement = document.querySelector('.effects');
 // Элемент, в котором надо создать слайдер
 const sliderElement = document.querySelector('.effect-level__slider');
-const sliderContainerElement = document.querySelector(''); // дополнить
-//// Поле ввода значения глубины эффекта, накладываемого на изображение
+// Контейнер с эффектами
+const sliderContainerElement = document.querySelector('.img-upload__effects');
+// Поле ввода значения глубины эффекта, накладываемого на изображение
 const effectLevelElement = document.querySelector('.effect-level__value');
 
 const isDefault = () => chosenEffect === DEFAULT_EFFECT;

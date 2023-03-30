@@ -1,5 +1,6 @@
 import { getPictures } from './data.js';
 import { renderGallery } from './gallery.js';
-//import { onFormSubmit } from './form.js';
+import { setupForm } from './form.js';
 
 renderGallery(getPictures());
+setupForm();

@@ -85,20 +85,24 @@ const validateTags = (value) => {
   return hasValidCount(tags) && hasUniqueTags(tags) && tags.every(isValidTag);
 };
 
-pristine.addValidator(
-  // поле, которое валидируем
-  hashtagField,
-  // функция-валидатор
-  validateTags,
-  // текст ошибки
-  TAG_ERROR_TEXT
-);
-
 const onFormSubmit = (evt) => {
+  // когда с сервера - проверка валидности формы и отправка
   evt.preventDefault();
   pristine.validate();
 };
 
-fileField.addEventListener('change', onFileInputChange);
-cancelButton.addEventListener('click', onCancelButtonClick);
-form.addEventListener('submit', onFormSubmit);
+const setupForm = () => {
+  fileField.addEventListener('change', onFileInputChange);
+  cancelButton.addEventListener('click', onCancelButtonClick);
+  form.addEventListener('submit', onFormSubmit);
+  pristine.addValidator(
+    // поле, которое валидируем
+    hashtagField,
+    // функция-валидатор
+    validateTags,
+    // текст ошибки
+    TAG_ERROR_TEXT
+  );
+};
+
+export { setupForm };

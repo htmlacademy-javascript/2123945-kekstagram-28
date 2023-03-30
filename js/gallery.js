@@ -11,9 +11,9 @@ const renderGallery = (pictures) => {
     if(!thumbnail) {
       return;
     }
+    evt.preventDefault();
 
     const picture = pictures.find(
-      // зачем плюс? преобразуем строку в число?
       (item) => item.id === +thumbnail.dataset.thumbnailId);
     showBigPicture(picture);
   });

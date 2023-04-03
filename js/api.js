@@ -20,16 +20,14 @@ const load = (route, errorText, method = Method.GET, body = null) =>
       if(!response.ok) {
         throw new Error();
       }
-      //let data;
-      return response.json().then((res) => ({ res }));
-      //return data;
+      return response.json();
     })
     .catch(() => {
       throw new Error(errorText);
     });
 
-const getData = async() =>
-  await load(Route.GET_DATA, ErrorText.GET_DATA);
+const getData = () =>
+  load(Route.GET_DATA, ErrorText.GET_DATA);
 
 const sendData = (body) =>
   load(Route.SEND_DATA, ErrorText.SEND_DATA, Method.POST, body);

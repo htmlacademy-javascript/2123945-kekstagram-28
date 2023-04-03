@@ -1,5 +1,7 @@
 import { resetScale } from './scale.js';
 import { resetEffects } from './effect.js';
+import { sendData } from './api.js';
+import { showSuccessMessage } from './messages.js';
 
 const MAX_HASHTAG_COUNT = 5;
 const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
@@ -86,11 +88,32 @@ const validateTags = (value) => {
   return hasValidCount(tags) && hasUniqueTags(tags) && tags.every(isValidTag);
 };
 
-const onFormSubmit = (evt) => {
+const onFormSubmit = async(evt) => {
   evt.preventDefault();
-  pristine.validate();
+  const isValid = pristine.validate();
+  if (isValid) {
+    const formData = new FormData(evt.target);
+
+    try {
+      await sendData(formData);
+      hideModal();
+      showSuccessMessage();
+    } catch {
+      //showErrorMessage();
+    }
+  }
 };
-//
+
+// setOnFormSubmit(async (data) => {
+//  try {
+//    await sendData(data);
+//    hideModal();
+//    showSuccessMessage();
+//  } catch {
+//    showErrorMessage();
+//  }
+//});
+
 // Для отправки данных - (из демки волшебники)?
 
 //const setUserFormSubmit = (onSuccess) => {
@@ -101,23 +124,6 @@ const onFormSubmit = (evt) => {
 //    if (isValid) {
 //      const formData = new FormData(evt.target);
 
-//      fetch(
-//        'https://28.javascript.pages.academy/kekstagram',
-//        {
-//          method: 'POST',
-//          body: formData,
-//        },
-//      )
-//        .then((response) => {
-//          if (response.ok) {
-//            onSuccess();
-//          } else {
-//            showAlert('Не удалось отправить форму. Попробуйте ещё раз');
-//          }
-//        })
-//        .catch(() => {
-//          showAlert('Не удалось отправить форму. Попробуйте ещё раз');
-//        });
 //    }
 //  });
 //};

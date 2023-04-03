@@ -1,11 +1,13 @@
 //import { getPictures } from './data.js';
 import { renderGallery } from './gallery.js';
-//import { setupForm, setUserFormSubmit } from './form.js';
-//import { showAlert } from './util.js';
-import { getData} from './api.js';
-const data = getData();
-renderGallery(data);
-//setupForm();
+import { setupForm } from './form.js';
+import { showAlert } from './util.js';
+import { getData } from './api.js';
+
+
+//const data = getData();
+//renderGallery(data);
+setupForm();
 
 // Ниже то, как сделано в ретро - разбор ДЗ.
 
@@ -15,19 +17,9 @@ renderGallery(data);
 // import { setupForm, hideModal } from './form.js';
 // import { showSuccessMessage, showErrorMessage } from './message.js';
 
-// setOnFormSubmit(async (data) => {
-//  try {
-//    await sendData(data);
-//    hideModal();
-//    showSuccessMessage();
-//  } catch {
-//    showErrorMessage();
-//  }
-//});
-
-//try {
-//  const data = await getData();
-//  renderGallery(data);
-//} catch (err) {
-//  showAlert(err.message);
-//}
+try {
+  const data = await getData();
+  renderGallery(data);
+} catch (err) {
+  showAlert(err.message);
+}

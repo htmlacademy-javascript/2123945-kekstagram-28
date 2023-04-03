@@ -21,8 +21,6 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-export { showAlert};
-
 // Вспомогательная функция #1 - поиск рандомного числа
 
 const getRandomInteger = (a, b) => {
@@ -48,4 +46,4 @@ function createIdGenerator () {
   };
 }
 
-export {getRandomInteger, getRandomArrayElement, createIdGenerator};
+export {getRandomInteger, getRandomArrayElement, createIdGenerator, showAlert};

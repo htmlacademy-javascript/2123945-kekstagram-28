@@ -87,31 +87,40 @@ const validateTags = (value) => {
 };
 
 const onFormSubmit = (evt) => {
-  // когда с сервера - проверка валидности формы и отправка
   evt.preventDefault();
   pristine.validate();
 };
 
-// Нужно ли так - (из демки волшебники)?
+// Для отправки данных - (из демки волшебники)?
 
-const setUserFormSubmit = (onSuccess) => {
-  form.addEventListener('submit', (evt) => {
-    evt.preventDefault();
+//const setUserFormSubmit = (onSuccess) => {
+//  form.addEventListener('submit', (evt) => {
+//    evt.preventDefault();
 
-    const isValid = pristine.validate();
-    if (isValid) {
-      const formData = new FormData(evt.target);
+//    const isValid = pristine.validate();
+//    if (isValid) {
+//      const formData = new FormData(evt.target);
 
-      fetch(
-        'https://28.javascript.pages.academy/kekstagram',
-        {
-          method: 'POST',
-          body: formData,
-        },
-      );
-    }
-  });
-};
+//      fetch(
+//        'https://28.javascript.pages.academy/kekstagram',
+//        {
+//          method: 'POST',
+//          body: formData,
+//        },
+//      )
+//        .then((response) => {
+//          if (response.ok) {
+//            onSuccess();
+//          } else {
+//            showAlert('Не удалось отправить форму. Попробуйте ещё раз');
+//          }
+//        })
+//        .catch(() => {
+//          showAlert('Не удалось отправить форму. Попробуйте ещё раз');
+//        });
+//    }
+//  });
+//};
 
 const setupForm = () => {
   fileField.addEventListener('change', onFileInputChange);
@@ -127,4 +136,4 @@ const setupForm = () => {
   );
 };
 
-export { setupForm };
+export { setupForm, setUserFormSubmit };

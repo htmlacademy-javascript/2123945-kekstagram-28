@@ -1,11 +1,13 @@
-// getPictures удалить? чтобы брать с сервера?
 //import { getPictures } from './data.js';
-import { renderGallery } from './gallery.js';
-import { setupForm } from './form.js';
+//import { renderGallery } from './gallery.js';
+import { setupForm, setUserFormSubmit } from './form.js';
+import { showAlert } from './util.js';
 import { getData, sendData } from './api.js';
 
-renderGallery(getPictures());
+//renderGallery(getPictures());
 setupForm();
+
+// Ниже то, как сделано в ретро - разбор ДЗ.
 
 // import { renderGallery } from './gallery.js';
 // import { getData, sendData } from './api.js';
@@ -29,16 +31,3 @@ setupForm();
 //} catch (err) {
 //  showAlert(err.message);
 //}
-
-
-// Из демки про волшебников
-
-import {renderGallery} from './gallery.js';
-
-const SIMILAR_PICTURES = 25;
-
-fetch('https://28.javascript.pages.academy/kekstagram')
-  .then((response) => response.json())
-  .then((pictures) => {
-    renderGallery(pictures.slice(0, SIMILAR_PICTURES));
-  });

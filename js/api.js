@@ -35,4 +35,3 @@ const sendData = (body) =>
   load(Route.SEND_DATA, ErrorText.SEND_DATA, Method.POST, body);
 
 export { getData, sendData };
-//

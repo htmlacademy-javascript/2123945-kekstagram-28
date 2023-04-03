@@ -1,11 +1,11 @@
 //import { getPictures } from './data.js';
-//import { renderGallery } from './gallery.js';
-import { setupForm, setUserFormSubmit } from './form.js';
-import { showAlert } from './util.js';
-import { getData, sendData } from './api.js';
-
-//renderGallery(getPictures());
-setupForm();
+import { renderGallery } from './gallery.js';
+//import { setupForm, setUserFormSubmit } from './form.js';
+//import { showAlert } from './util.js';
+import { getData} from './api.js';
+const data = getData();
+renderGallery(data);
+//setupForm();
 
 // Ниже то, как сделано в ретро - разбор ДЗ.
 

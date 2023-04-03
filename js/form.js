@@ -90,7 +90,7 @@ const onFormSubmit = (evt) => {
   evt.preventDefault();
   pristine.validate();
 };
-
+//
 // Для отправки данных - (из демки волшебники)?
 
 //const setUserFormSubmit = (onSuccess) => {
@@ -136,4 +136,4 @@ const setupForm = () => {
   );
 };
 
-export { setupForm, setUserFormSubmit };
+export { setupForm };

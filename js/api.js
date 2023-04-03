@@ -14,21 +14,25 @@ const ErrorText = {
 
 // Функция, которая загружает данные с сервера
 const load = (route, errorText, method = Method.GET, body = null) =>
-  fetch(`{BASE_URL}${route}`, { method, body })
+  fetch(`${BASE_URL}${route}`, { method, body })
     .then((response) => {
+      //debugger;
       if(!response.ok) {
         throw new Error();
       }
-      return response.json();
+      //let data;
+      return response.json().then((res) => ({ res }));
+      //return data;
     })
     .catch(() => {
       throw new Error(errorText);
     });
 
-const getData = () =>
-  load(Route.GET_DATA, ErrorText.GET_DATA);
+const getData = async() =>
+  await load(Route.GET_DATA, ErrorText.GET_DATA);
 
 const sendData = (body) =>
   load(Route.SEND_DATA, ErrorText.SEND_DATA, Method.POST, body);
 
 export { getData, sendData };
+//

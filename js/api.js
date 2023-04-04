@@ -30,5 +30,6 @@ const getData = () =>
 
 const sendData = (body) =>
   load(Route.SEND_DATA, ErrorText.SEND_DATA, Method.POST, body);
+  // На время выполнения запроса к серверу кнопка «Отправить» блокируется.
 
 export { getData, sendData };

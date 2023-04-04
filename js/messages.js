@@ -53,7 +53,6 @@ function onDocumentKeydown(evt) {
 // error: вся введённая пользователем информация сохраняется, чтобы у него была возможность отправить форму повторно.
 
 //клик вовне
-
 // Close modal on outside click
 
 //const modal = document.querySelector('.modal')

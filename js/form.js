@@ -1,7 +1,7 @@
 import { resetScale } from './scale.js';
 import { resetEffects } from './effect.js';
 import { sendData } from './api.js';
-import { showSuccessMessage } from './messages.js';
+import { showSuccessMessage, showErrorMessage } from './messages.js';
 
 const MAX_HASHTAG_COUNT = 5;
 const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
@@ -98,7 +98,7 @@ const onFormSubmit = async(evt) => {
       hideModal();
       showSuccessMessage();
     } catch {
-      //showErrorMessage();
+      showErrorMessage();
     }
   }
 };

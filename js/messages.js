@@ -50,21 +50,4 @@ function onDocumentKeydown(evt) {
   }
 }
 
-// error: вся введённая пользователем информация сохраняется, чтобы у него была возможность отправить форму повторно.
-
-// обработчик на 2 окна - и stoppropagation (при клике на моделку)
-
-//клик вовне
-// Close modal on outside click
-
-//const modal = document.querySelector('.modal')
-
-//document.addEventListener('click', (e) => {
-//  let clickInside = modal.contains(e.target)
-
-//  if (!clickInside) {
-//     modal.classList.remove('show')
-//  }
-//})
-
 export { showSuccessMessage, showErrorMessage };

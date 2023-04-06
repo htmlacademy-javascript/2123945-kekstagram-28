@@ -62,6 +62,10 @@ const onFileInputChange = () => {
   showModal();
 };
 
+const onFormButtonClick = () => {
+  hideModal();
+};
+
 // Проверяет каждый тег на соответствие регулярному выражению
 const isValidTag = (tag) => VALID_SYMBOLS.test(tag);
 
@@ -114,6 +118,10 @@ const setupForm = () => {
   fileField.addEventListener('change', onFileInputChange);
   cancelButton.addEventListener('click', onCancelButtonClick);
   form.addEventListener('submit', onFormSubmit);
+  document.addEventListener('click', onFormButtonClick);
+  overlay.addEventListener('click', (event) => {
+    event.stopPropagation();
+  });
   pristine.addValidator(
     // поле, которое валидируем
     hashtagField,

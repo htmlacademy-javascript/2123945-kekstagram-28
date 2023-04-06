@@ -25,3 +25,11 @@ const getFilteredPictures = () => {
       return [...pictures];
   }
 };
+
+const init = (loadedPictures, callback) => {
+  filterElement.classList.remove('.img-filters--inactive');
+  pictures = [...loadedPictures];
+  setOnFilterClick(callback);
+};
+
+export { init, getFilteredPictures };

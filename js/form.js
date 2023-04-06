@@ -87,6 +87,12 @@ const validateTags = (value) => {
   return hasValidCount(tags) && hasUniqueTags(tags) && tags.every(isValidTag);
 };
 
+const toBlockButton = () => {
+  const blockButton = document.getElementById('upload-submit');
+  blockButton.disable = true;
+  blockButton.innerHTML = 'Загружаем...';
+};
+
 const onFormSubmit = async(evt) => {
   evt.preventDefault();
   const isValid = pristine.validate();
@@ -95,6 +101,7 @@ const onFormSubmit = async(evt) => {
 
     try {
       await sendData(formData);
+      toBlockButton();
       hideModal();
       showSuccessMessage();
     } catch {
@@ -102,30 +109,6 @@ const onFormSubmit = async(evt) => {
     }
   }
 };
-
-// setOnFormSubmit(async (data) => {
-//  try {
-//    await sendData(data);
-//    hideModal();
-//    showSuccessMessage();
-//  } catch {
-//    showErrorMessage();
-//  }
-//});
-
-// Для отправки данных - (из демки волшебники)?
-
-//const setUserFormSubmit = (onSuccess) => {
-//  form.addEventListener('submit', (evt) => {
-//    evt.preventDefault();
-
-//    const isValid = pristine.validate();
-//    if (isValid) {
-//      const formData = new FormData(evt.target);
-
-//    }
-//  });
-//};
 
 const setupForm = () => {
   fileField.addEventListener('change', onFileInputChange);

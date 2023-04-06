@@ -28,8 +28,8 @@ const load = (route, errorText, method = Method.GET, body = null) =>
 const getData = () =>
   load(Route.GET_DATA, ErrorText.GET_DATA);
 
+// В sendButton надо включать toBlockButton?
 const sendData = (body) =>
   load(Route.SEND_DATA, ErrorText.SEND_DATA, Method.POST, body);
-  // На время выполнения запроса к серверу кнопка «Отправить» блокируется.
 
 export { getData, sendData };

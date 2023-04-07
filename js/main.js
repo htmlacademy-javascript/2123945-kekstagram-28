@@ -8,10 +8,20 @@ setupForm();
 
 try {
   const data = await getData();
-  renderGallery(data);
+  const debouncedRenderGallery = debounce(renderGallery);
+  init(data, debouncedRenderGallery);
+  renderGallery(getFilteredPictures());
 } catch (err) {
   showAlert(err.message);
 }
+
+// так было:
+//try {
+//  const data = await getData();
+//  renderGallery(data);
+//} catch (err) {
+//  showAlert(err.message);
+//}
 
 // Эти функции подключила в form.js:
 //import { sendData } from './api.js';
@@ -28,12 +38,3 @@ try {
 //    showErrorMessage();
 //  }
 //});
-
-//try {
-//  const data = await getData();
-//  const debouncedRenderGallery = debounce(renderGallery);
-//  init(data, debouncedRenderGallery);
-//  renderGallery(getFilteredPictures());
-//} catch (err) {
-//  showAlert(err.message);
-//}

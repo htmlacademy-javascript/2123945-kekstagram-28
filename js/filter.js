@@ -1,3 +1,5 @@
+import { get } from "browser-sync";
+
 const PICTURES_COUNT = 10;
 const Filter = {
   DEFAULT: 'filter-default',
@@ -23,6 +25,25 @@ const getFilteredPictures = () => {
     default:
       return [...pictures];
   }
+};
+
+const setOnFilterClick = (callback) => {
+  filterElement.addEventListener('click', (evt) => {
+    if(!evt.classList.contains('img-filters__button')) {
+      return;
+    }
+    const clickedButton = evt.target;
+    if(clickedButton.id === currentFilter) {
+      return;
+    }
+
+    filterElement
+      .querySelector('.img-filters__button--active')
+      .classList.remove('.img-filters__button--active');
+    clickedButton.classList.add('.img-filters__button--active');
+    currentFilter = clickedButton.id;
+    callback(getFilteredPictures());
+  });
 };
 
 const init = (loadedPictures, callback) => {

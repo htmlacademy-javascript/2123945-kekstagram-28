@@ -91,10 +91,16 @@ const validateTags = (value) => {
   return hasValidCount(tags) && hasUniqueTags(tags) && tags.every(isValidTag);
 };
 
-const toBlockButton = () => {
-  const blockButton = document.getElementById('upload-submit');
-  blockButton.disable = true;
-  blockButton.innerHTML = 'Загружаем...';
+const blockButton = () => {
+  const blockBtn = document.getElementById('upload-submit');
+  blockBtn.disable = true;
+  blockBtn.textContent = '/Как назвать?/';
+};
+
+const unblockButton = () => {
+  const blockBtn = document.getElementById('upload-submit');
+  blockBtn.disable = false;
+  blockBtn.textContent = 'Загружаем...';
 };
 
 const onFormSubmit = async(evt) => {
@@ -104,12 +110,14 @@ const onFormSubmit = async(evt) => {
     const formData = new FormData(evt.target);
 
     try {
+      blockButton();
       await sendData(formData);
-      toBlockButton();
+      unblockButton();
       hideModal();
       showSuccessMessage();
     } catch {
       showErrorMessage();
+      unblockButton();
     }
   }
 };

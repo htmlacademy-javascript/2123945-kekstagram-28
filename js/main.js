@@ -2,7 +2,6 @@ import { renderGallery } from './gallery.js';
 import { setupForm } from './form.js';
 import { showAlert, debounce } from './util.js';
 import { getData } from './api.js';
-import { get } from 'browser-sync';
 import { init, getFilteredPictures } from './filter.js';
 
 setupForm();

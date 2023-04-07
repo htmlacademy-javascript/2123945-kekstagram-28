@@ -1,33 +1,33 @@
 // Сообщение о том, что отправка данных прошла успешно
 
-const showSuccessMessageElement = document
+const successMessageElement = document
   .querySelector('#success')
   .content.querySelector('.success');
 
 const hideSuccessMessage = () => {
-  showSuccessMessageElement.remove();
+  successMessageElement.remove();
 };
 
 const onSuccessButtonClick = () => {
   hideSuccessMessage();
 };
 
-const successButton = showSuccessMessageElement.querySelector('.success__button');
+const successButton = successMessageElement.querySelector('.success__button');
 
 const showSuccessMessage = () => {
-  document.querySelector('body').append(showSuccessMessageElement);
+  document.querySelector('body').append(successMessageElement);
   successButton.addEventListener('click', onSuccessButtonClick);
   document.addEventListener('keydown', onDocumentKeydown);
 };
 
 // Сообщение о том, что отправка данных прошла НЕ успешно
 
-const showErrorMessageElement = document
+const errorMessageElement = document
   .querySelector('#error')
   .content.querySelector('.error');
 
 const hideErrorMessage = () => {
-  showErrorMessageElement.remove();
+  errorMessageElement.remove();
 };
 
 const onErrorButtonClick = () => {
@@ -36,20 +36,20 @@ const onErrorButtonClick = () => {
 
 //  закрывай модалку и делай stopPropagation для события:
 
-const onClickOutside = () => {
-  const container = document.getElementById('error');
-  if (!container.contains(evt.target)) {
-    container.style.display = 'none';
+const onClickOutside = (evt) => {
+  if (!errorMessageElement.contains(evt.target)) {
+    hideErrorMessage();
+    evt.stopPropagation();
   }
 };
 
-const errorButton = showErrorMessageElement.querySelector('.error__button');
+const errorButton = errorMessageElement.querySelector('.error__button');
 
 const showErrorMessage = () => {
-  document.querySelector('body').append(showErrorMessageElement);
+  document.querySelector('body').append(errorMessageElement);
   errorButton.addEventListener('click', onErrorButtonClick);
   document.addEventListener('keydown', onDocumentKeydown);
-  document.getElementById('error').addEventListener('click', onClickOutside);
+  document.addEventListener('click', onClickOutside);
 };
 
 function onDocumentKeydown(evt) {

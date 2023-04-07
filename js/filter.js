@@ -27,9 +27,10 @@ const getFilteredPictures = () => {
 
 const setOnFilterClick = (callback) => {
   filterElement.addEventListener('click', (evt) => {
-    if(!evt.classList.contains('img-filters__button')) {
+    if(!evt.target.classList.contains('img-filters__button')) {
       return;
     }
+
     const clickedButton = evt.target;
     if(clickedButton.id === currentFilter) {
       return;
@@ -37,15 +38,15 @@ const setOnFilterClick = (callback) => {
 
     filterElement
       .querySelector('.img-filters__button--active')
-      .classList.remove('.img-filters__button--active');
-    clickedButton.classList.add('.img-filters__button--active');
+      .classList.remove('img-filters__button--active');
+    clickedButton.classList.add('img-filters__button--active');
     currentFilter = clickedButton.id;
     callback(getFilteredPictures());
   });
 };
 
 const init = (loadedPictures, callback) => {
-  filterElement.classList.remove('.img-filters--inactive');
+  filterElement.classList.remove('img-filters--inactive');
   pictures = [...loadedPictures];
   setOnFilterClick(callback);
 };

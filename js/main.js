@@ -15,26 +15,6 @@ try {
   showAlert(err.message);
 }
 
-// так было:
-//try {
-//  const data = await getData();
-//  renderGallery(data);
-//} catch (err) {
-//  showAlert(err.message);
-//}
-
 // Эти функции подключила в form.js:
 //import { sendData } from './api.js';
 //import { showSuccessMessage } from './messages.js';
-
-// Так в ретроспективе (у меня в form.js):
-
-//setOnFormSubmit(async (data) => {
-//  try {
-//    await sendData(data);
-//    hideModal();
-//    showSuccessMessage();
-//  } catch {
-//    showErrorMessage();
-//  }
-//});

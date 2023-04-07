@@ -43,7 +43,6 @@ const onClickOutside = () => {
   }
 };
 
-
 const errorButton = showErrorMessageElement.querySelector('.error__button');
 
 const showErrorMessage = () => {

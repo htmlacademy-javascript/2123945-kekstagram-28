@@ -93,14 +93,14 @@ const validateTags = (value) => {
 
 const blockButton = () => {
   const blockBtn = document.getElementById('upload-submit');
+  blockBtn.textContent = 'Загружаем...';
   blockBtn.disable = true;
-  blockBtn.textContent = '/Как назвать?/';
+  // почему все равно можно кликать по ней во время отправки?
 };
 
 const unblockButton = () => {
   const blockBtn = document.getElementById('upload-submit');
   blockBtn.disable = false;
-  blockBtn.textContent = 'Загружаем...';
 };
 
 const onFormSubmit = async(evt) => {

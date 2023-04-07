@@ -34,12 +34,23 @@ const onErrorButtonClick = () => {
   hideErrorMessage();
 };
 
+//  закрывай модалку и делай stopPropagation для события:
+
+const onClickOutside = () => {
+  const container = document.getElementById('error');
+  if (!container.contains(evt.target)) {
+    container.style.display = 'none';
+  }
+};
+
+
 const errorButton = showErrorMessageElement.querySelector('.error__button');
 
 const showErrorMessage = () => {
   document.querySelector('body').append(showErrorMessageElement);
   errorButton.addEventListener('click', onErrorButtonClick);
   document.addEventListener('keydown', onDocumentKeydown);
+  document.getElementById('error').addEventListener('click', onClickOutside);
 };
 
 function onDocumentKeydown(evt) {

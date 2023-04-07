@@ -8,7 +8,7 @@ setupForm();
 
 try {
   const data = await getData();
-  const debouncedRenderGallery = debounce(renderGallery);
+  //const debouncedRenderGallery = debounce(renderGallery);
   init(data, debouncedRenderGallery);
   renderGallery(getFilteredPictures());
 } catch (err) {

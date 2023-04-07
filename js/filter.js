@@ -1,5 +1,3 @@
-import { get } from "browser-sync";
-
 const PICTURES_COUNT = 10;
 const Filter = {
   DEFAULT: 'filter-default',

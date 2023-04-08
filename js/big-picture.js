@@ -1,4 +1,5 @@
 const COMMENTS_PER_PORTION = 5;
+let likesCounter = 0;
 
 const bigPicture = document.querySelector('.big-picture');
 const commentCount = document.querySelector('.social__comment-count');
@@ -66,6 +67,11 @@ const onCancelButtonClick = () => {
   hideBigPicture();
 };
 
+const onLikesHeartClick = () => {
+  likesCounter += 1;
+  bigPicture.querySelector('.likes-count').textContent = likesCounter;
+};
+
 const renderPictureDetails = ({ url, likes, description }) => {
   // атрибуту src элемента с классом big-picture присваивают новое значение url
   bigPicture.querySelector('.big-picture__img img').src = url;
@@ -83,9 +89,13 @@ const showBigPicture = (picture) => {
   document.addEventListener('keydown', onDocumentKeydown);
   cancelButton.addEventListener('click', onCancelButtonClick);
   commentsLoader.addEventListener ('click', onCommentsLoaderClick);
+  likesCounter = picture.likes;
 
   renderPictureDetails(picture);
   renderComments();
+
+  const likesHeart = document.querySelector('.social__likes');
+  likesHeart.addEventListener('click', onLikesHeartClick);
 };
 
 export { showBigPicture };

@@ -12,6 +12,13 @@ const onSuccessButtonClick = () => {
   hideSuccessMessage();
 };
 
+const onSuccessClickOutside = (evt) => {
+  const successMessageInner = successMessageElement.querySelector('.success__inner');
+  if (!successMessageInner.contains(evt.target)) {
+    hideSuccessMessage();
+  }
+};
+
 const successButton = successMessageElement.querySelector('.success__button');
 
 // Сообщение о том, что отправка данных прошла НЕ успешно
@@ -24,12 +31,10 @@ const hideErrorMessage = () => {
   errorMessageElement.remove();
 };
 
-const onClickOutside = (evt) => {
+const onErrorClickOutside = (evt) => {
   const errorMessageInner = errorMessageElement.querySelector('.error__inner');
-  const successMessageInner = successMessageElement.querySelector('.success__inner');
-  if (!errorMessageInner.contains(evt.target) || !successMessageInner.contains(evt.target)) {
+  if (!errorMessageInner.contains(evt.target)) {
     hideErrorMessage();
-    hideSuccessMessage();
   }
 };
 
@@ -37,7 +42,7 @@ const showSuccessMessage = () => {
   document.querySelector('body').append(successMessageElement);
   successButton.addEventListener('click', onSuccessButtonClick);
   document.addEventListener('keydown', onDocumentKeydown);
-  document.addEventListener('click', onClickOutside);
+  document.addEventListener('click', onSuccessClickOutside);
 };
 
 const onErrorButtonClick = () => {
@@ -50,7 +55,7 @@ const showErrorMessage = () => {
   document.querySelector('body').append(errorMessageElement);
   errorButton.addEventListener('click', onErrorButtonClick);
   document.addEventListener('keydown', onDocumentKeydown);
-  document.addEventListener('click', onClickOutside);
+  document.addEventListener('click', onErrorClickOutside);
 };
 
 function onDocumentKeydown(evt) {

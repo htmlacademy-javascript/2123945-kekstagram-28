@@ -20,6 +20,13 @@ const createThumbnail = (picture) => {
 };
 
 const renderThumbnails = (pictures) => {
+  const oldPictures = document.querySelectorAll('.picture');
+  if (oldPictures.length) {
+    oldPictures.forEach((oldPicture) => {
+      oldPicture.remove();
+    });
+  }
+
   // Создаем новую обертку для thumbnails
   const fragment = document.createDocumentFragment();
   // На каждой итерации цикла - присваеваем новые значения атрибутов и получаем новую миниатюру

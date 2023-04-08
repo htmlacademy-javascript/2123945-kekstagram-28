@@ -1,5 +1,7 @@
 import { resetScale } from './scale.js';
 import { resetEffects } from './effect.js';
+import { sendData } from './api.js';
+import { showSuccessMessage, showErrorMessage } from './messages.js';
 
 const MAX_HASHTAG_COUNT = 5;
 const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
@@ -45,8 +47,12 @@ const isTextFieldFocused = () =>
   document.activeElement === hashtagField ||
   document.activeElement === commentField;
 
+const errorMessageElement = document
+  .querySelector('#error')
+  .content.querySelector('.error');
+
 function onDocumentKeydown(evt) {
-  if (evt.key === 'Escape' && !isTextFieldFocused()) {
+  if (evt.key === 'Escape' && !isTextFieldFocused() && errorMessageElement()) {
     evt.preventDefault();
     hideModal();
   }
@@ -56,9 +62,12 @@ const onCancelButtonClick = () => {
   hideModal();
 };
 
-
 const onFileInputChange = () => {
   showModal();
+};
+
+const onFormButtonClick = () => {
+  hideModal();
 };
 
 // Проверяет каждый тег на соответствие регулярному выражению
@@ -86,16 +95,47 @@ const validateTags = (value) => {
   return hasValidCount(tags) && hasUniqueTags(tags) && tags.every(isValidTag);
 };
 
-const onFormSubmit = (evt) => {
-  // когда с сервера - проверка валидности формы и отправка
+const blockButton = () => {
+  const blockBtn = document.getElementById('upload-submit');
+  blockBtn.textContent = 'Загружаем...';
+  blockBtn.disable = true;
+  blockBtn.setAttribute('disabled', 'true');
+  // почему все равно можно кликать по ней во время отправки?
+};
+
+const unblockButton = () => {
+  const blockBtn = document.getElementById('upload-submit');
+  blockBtn.textContent = 'Опубликовать';
+  blockBtn.disable = false;
+  blockBtn.removeAttribute('disabled', 'false');
+};
+
+const onFormSubmit = async(evt) => {
   evt.preventDefault();
-  pristine.validate();
+  const isValid = pristine.validate();
+  if (isValid) {
+    const formData = new FormData(evt.target);
+
+    try {
+      blockButton();
+      await sendData(formData);
+      unblockButton();
+      hideModal();
+      showSuccessMessage();
+    } catch {
+      showErrorMessage();
+      unblockButton();
+    }
+  }
 };
 
 const setupForm = () => {
   fileField.addEventListener('change', onFileInputChange);
   cancelButton.addEventListener('click', onCancelButtonClick);
   form.addEventListener('submit', onFormSubmit);
+  overlay.addEventListener('click', (event) => {
+    event.stopPropagation();
+  });
   pristine.addValidator(
     // поле, которое валидируем
     hashtagField,

@@ -14,12 +14,6 @@ const onSuccessButtonClick = () => {
 
 const successButton = successMessageElement.querySelector('.success__button');
 
-const showSuccessMessage = () => {
-  document.querySelector('body').append(successMessageElement);
-  successButton.addEventListener('click', onSuccessButtonClick);
-  document.addEventListener('keydown', onDocumentKeydown);
-};
-
 // Сообщение о том, что отправка данных прошла НЕ успешно
 
 const errorMessageElement = document
@@ -30,17 +24,24 @@ const hideErrorMessage = () => {
   errorMessageElement.remove();
 };
 
-const onErrorButtonClick = () => {
-  hideErrorMessage();
+const onClickOutside = (evt) => {
+  const errorMessageInner = errorMessageElement.querySelector('.error__inner');
+  const successMessageInner = successMessageElement.querySelector('.success__inner');
+  if (!errorMessageInner.contains(evt.target) || !successMessageInner.contains(evt.target)) {
+    hideErrorMessage();
+    hideSuccessMessage();
+  }
 };
 
-//  закрывай модалку и делай stopPropagation для события:
+const showSuccessMessage = () => {
+  document.querySelector('body').append(successMessageElement);
+  successButton.addEventListener('click', onSuccessButtonClick);
+  document.addEventListener('keydown', onDocumentKeydown);
+  document.addEventListener('click', onClickOutside);
+};
 
-const onClickOutside = (evt) => {
-  if (!errorMessageElement.contains(evt.target)) {
-    hideErrorMessage();
-    evt.stopPropagation();
-  }
+const onErrorButtonClick = () => {
+  hideErrorMessage();
 };
 
 const errorButton = errorMessageElement.querySelector('.error__button');

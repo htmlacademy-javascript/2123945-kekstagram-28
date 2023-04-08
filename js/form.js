@@ -47,8 +47,12 @@ const isTextFieldFocused = () =>
   document.activeElement === hashtagField ||
   document.activeElement === commentField;
 
+const errorMessageElement = document
+  .querySelector('#error')
+  .content.querySelector('.error');
+
 function onDocumentKeydown(evt) {
-  if (evt.key === 'Escape' && !isTextFieldFocused()) {
+  if (evt.key === 'Escape' && !isTextFieldFocused() && errorMessageElement()) {
     evt.preventDefault();
     hideModal();
   }
@@ -129,7 +133,6 @@ const setupForm = () => {
   fileField.addEventListener('change', onFileInputChange);
   cancelButton.addEventListener('click', onCancelButtonClick);
   form.addEventListener('submit', onFormSubmit);
-  document.addEventListener('click', onFormButtonClick);
   overlay.addEventListener('click', (event) => {
     event.stopPropagation();
   });

@@ -3,7 +3,7 @@ import { setupForm } from './form.js';
 import { showAlert, debounce } from './util.js';
 import { getData } from './api.js';
 import { init, getFilteredPictures } from './filter.js';
-import './upload-images';
+import './upload-images.js';
 
 setupForm();
 

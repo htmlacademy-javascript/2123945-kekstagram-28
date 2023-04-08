@@ -66,10 +66,6 @@ const onFileInputChange = () => {
   showModal();
 };
 
-const onFormButtonClick = () => {
-  hideModal();
-};
-
 // Проверяет каждый тег на соответствие регулярному выражению
 const isValidTag = (tag) => VALID_SYMBOLS.test(tag);
 

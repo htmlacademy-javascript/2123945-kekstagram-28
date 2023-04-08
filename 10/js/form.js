@@ -91,10 +91,19 @@ const validateTags = (value) => {
   return hasValidCount(tags) && hasUniqueTags(tags) && tags.every(isValidTag);
 };
 
-const toBlockButton = () => {
-  const blockButton = document.getElementById('upload-submit');
-  blockButton.disable = true;
-  blockButton.innerHTML = 'Загружаем...';
+const blockButton = () => {
+  const blockBtn = document.getElementById('upload-submit');
+  blockBtn.textContent = 'Загружаем...';
+  blockBtn.disable = true;
+  blockBtn.setAttribute('disabled', 'true');
+  // почему все равно можно кликать по ней во время отправки?
+};
+
+const unblockButton = () => {
+  const blockBtn = document.getElementById('upload-submit');
+  blockBtn.textContent = 'Опубликовать';
+  blockBtn.disable = false;
+  blockBtn.removeAttribute('disabled', 'false');
 };
 
 const onFormSubmit = async(evt) => {
@@ -104,12 +113,14 @@ const onFormSubmit = async(evt) => {
     const formData = new FormData(evt.target);
 
     try {
+      blockButton();
       await sendData(formData);
-      toBlockButton();
+      unblockButton();
       hideModal();
       showSuccessMessage();
     } catch {
       showErrorMessage();
+      unblockButton();
     }
   }
 };

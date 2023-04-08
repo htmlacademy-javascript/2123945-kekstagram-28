@@ -1,45 +1,61 @@
 // Сообщение о том, что отправка данных прошла успешно
 
-const showSuccessMessageElement = document
+const successMessageElement = document
   .querySelector('#success')
   .content.querySelector('.success');
 
 const hideSuccessMessage = () => {
-  showSuccessMessageElement.remove();
+  successMessageElement.remove();
 };
 
 const onSuccessButtonClick = () => {
   hideSuccessMessage();
 };
 
-const successButton = showSuccessMessageElement.querySelector('.success__button');
-
-const showSuccessMessage = () => {
-  document.querySelector('body').append(showSuccessMessageElement);
-  successButton.addEventListener('click', onSuccessButtonClick);
-  document.addEventListener('keydown', onDocumentKeydown);
+const onSuccessClickOutside = (evt) => {
+  const successMessageInner = successMessageElement.querySelector('.success__inner');
+  if (!successMessageInner.contains(evt.target)) {
+    hideSuccessMessage();
+  }
 };
+
+const successButton = successMessageElement.querySelector('.success__button');
 
 // Сообщение о том, что отправка данных прошла НЕ успешно
 
-const showErrorMessageElement = document
+const errorMessageElement = document
   .querySelector('#error')
   .content.querySelector('.error');
 
 const hideErrorMessage = () => {
-  showErrorMessageElement.remove();
+  errorMessageElement.remove();
+};
+
+const onErrorClickOutside = (evt) => {
+  const errorMessageInner = errorMessageElement.querySelector('.error__inner');
+  if (!errorMessageInner.contains(evt.target)) {
+    hideErrorMessage();
+  }
+};
+
+const showSuccessMessage = () => {
+  document.querySelector('body').append(successMessageElement);
+  successButton.addEventListener('click', onSuccessButtonClick);
+  document.addEventListener('keydown', onDocumentKeydown);
+  document.addEventListener('click', onSuccessClickOutside);
 };
 
 const onErrorButtonClick = () => {
   hideErrorMessage();
 };
 
-const errorButton = showErrorMessageElement.querySelector('.error__button');
+const errorButton = errorMessageElement.querySelector('.error__button');
 
 const showErrorMessage = () => {
-  document.querySelector('body').append(showErrorMessageElement);
+  document.querySelector('body').append(errorMessageElement);
   errorButton.addEventListener('click', onErrorButtonClick);
   document.addEventListener('keydown', onDocumentKeydown);
+  document.addEventListener('click', onErrorClickOutside);
 };
 
 function onDocumentKeydown(evt) {

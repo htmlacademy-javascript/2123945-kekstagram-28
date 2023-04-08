@@ -95,6 +95,7 @@ const blockButton = () => {
   const blockBtn = document.getElementById('upload-submit');
   blockBtn.textContent = 'Загружаем...';
   blockBtn.disable = true;
+  blockBtn.setAttribute('disabled', 'true');
   // почему все равно можно кликать по ней во время отправки?
 };
 
@@ -102,6 +103,7 @@ const unblockButton = () => {
   const blockBtn = document.getElementById('upload-submit');
   blockBtn.textContent = 'Опубликовать';
   blockBtn.disable = false;
+  blockBtn.removeAttribute('disabled', 'false');
 };
 
 const onFormSubmit = async(evt) => {

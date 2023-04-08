@@ -100,6 +100,7 @@ const blockButton = () => {
 
 const unblockButton = () => {
   const blockBtn = document.getElementById('upload-submit');
+  blockBtn.textContent = 'Опубликовать';
   blockBtn.disable = false;
 };
 

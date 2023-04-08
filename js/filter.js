@@ -15,7 +15,6 @@ const sortByComments = (pictureA, pictureB) =>
   pictureB.comments.length - pictureA.comments.length;
 
 const getFilteredPictures = () => {
-  debugger;
   switch (currentFilter) {
     case Filter.RANDOM:
       return [...pictures].sort(sortRandomly).slice(0, PICTURES_COUNT);
@@ -43,7 +42,6 @@ const setOnFilterClick = (callback) => {
     clickedButton.classList.add('img-filters__button--active');
     currentFilter = clickedButton.id;
     // callback ждет data на вход. ее получаем из getFilteredPictures.
-    debugger;
     callback(getFilteredPictures());
   });
 };
@@ -52,7 +50,6 @@ const setOnFilterClick = (callback) => {
 const init = (loadedPictures, callback) => {
   filterElement.classList.remove('img-filters--inactive');
   pictures = [...loadedPictures];
-  debugger;
   setOnFilterClick(callback);
 };
 

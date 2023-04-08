@@ -20,16 +20,21 @@ const createThumbnail = (picture) => {
 };
 
 const renderThumbnails = (pictures) => {
+  const picturesContainer = document.querySelector('pictures-container');
+  if (picturesContainer) {
+    picturesContainer.remove();
+  }
   // Создаем новую обертку для thumbnails
-  const fragment = document.createDocumentFragment();
+  const fragment = document.createElement('div');
+  fragment.classList.add('pictures-container');
   // На каждой итерации цикла - присваеваем новые значения атрибутов и получаем новую миниатюру
   pictures.forEach((picture) => {
     const thumbnail = createThumbnail(picture);
     // Добавляем ее в обертку - fragment
-    fragment.append(thumbnail);
+    fragment.appendChild(thumbnail);
   });
   // Вставляем fragment в container
-  container.append(fragment);
+  container.appendChild(fragment);
 };
 
 export { renderThumbnails };

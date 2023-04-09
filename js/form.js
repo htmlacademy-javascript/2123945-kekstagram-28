@@ -47,12 +47,11 @@ const isTextFieldFocused = () =>
   document.activeElement === hashtagField ||
   document.activeElement === commentField;
 
-const errorMessageElement = document
-  .querySelector('#error')
-  .content.querySelector('.error');
+const existMessageElement = () =>
+  document.querySelector('.error');
 
 function onDocumentKeydown(evt) {
-  if (evt.key === 'Escape' && !isTextFieldFocused() && errorMessageElement()) {
+  if (evt.key === 'Escape' && !isTextFieldFocused() && !existMessageElement()) {
     evt.preventDefault();
     hideModal();
   }

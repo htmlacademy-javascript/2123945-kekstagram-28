@@ -60,7 +60,7 @@ const showErrorMessage = () => {
 
 function onDocumentKeydown(evt) {
   if (evt.key === 'Escape') {
-    evt.preventDefault();
+    evt.stopPropagation();
     hideSuccessMessage();
     hideErrorMessage();
   }

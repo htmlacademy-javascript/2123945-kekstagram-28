@@ -1,5 +1,7 @@
 const COMMENTS_PER_PORTION = 5;
 let likesCounter = 0;
+let commentsShown = 0;
+let comments = [];
 
 const bigPicture = document.querySelector('.big-picture');
 const commentCount = document.querySelector('.social__comment-count');
@@ -7,10 +9,7 @@ const commentList = document.querySelector('.social__comments');
 const commentsLoader = document.querySelector('.comments-loader');
 const body = document.querySelector('body');
 const cancelButton = document.querySelector('.big-picture__cancel');
-const smallPictures = document.querySelectorAll('.effects__item');
-
-let commentsShown = 0;
-let comments = [];
+const smallPictures = document.querySelectorAll('.effects__item')
 
 const createComment = ({ avatar, name, message }) => {
   const comment = document.createElement('li');
@@ -83,7 +82,7 @@ const renderPictureDetails = ({ url, likes, description }) => {
 
 const filterSmallPictures = (picture) => {
   if (smallPictures.length) {
-    smallPictures.forEach(() => {
+    smallPictures.forEach((picture) => {
       smallPictures.src = URL.createObjectURL(evt.target.smallPictures[0]);
     });
   }

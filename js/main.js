@@ -5,7 +5,6 @@ import { getData } from './api.js';
 import { init, getFilteredPictures } from './filter.js';
 import './upload-images.js';
 
-
 setupForm();
 
 try {

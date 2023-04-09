@@ -7,6 +7,7 @@ const commentList = document.querySelector('.social__comments');
 const commentsLoader = document.querySelector('.comments-loader');
 const body = document.querySelector('body');
 const cancelButton = document.querySelector('.big-picture__cancel');
+const smallPictures = document.querySelectorAll('.effects__item');
 
 let commentsShown = 0;
 let comments = [];
@@ -80,6 +81,14 @@ const renderPictureDetails = ({ url, likes, description }) => {
   bigPicture.querySelector('.social__caption').textContent = description;
 };
 
+const filterSmallPictures = (picture) => {
+  if (smallPictures.length) {
+    smallPictures.forEach(() => {
+      smallPictures.src = URL.createObjectURL(evt.target.smallPictures[0]);
+    });
+  }
+};
+
 const showBigPicture = (picture) => {
   comments = picture.comments;
   bigPicture.classList.remove('hidden');
@@ -90,6 +99,7 @@ const showBigPicture = (picture) => {
   cancelButton.addEventListener('click', onCancelButtonClick);
   commentsLoader.addEventListener ('click', onCommentsLoaderClick);
   likesCounter = picture.likes;
+  smallPictures.addEventListener('click', filterSmallPictures());
 
   renderPictureDetails(picture);
   renderComments();

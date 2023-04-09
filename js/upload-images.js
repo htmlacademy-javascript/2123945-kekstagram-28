@@ -12,8 +12,3 @@ fileField.addEventListener('change', () => {
     preview.src = URL.createObjectURL(file);
   }
 });
-
-
-// по селектору ищу все картинки, qsAll
-// for each и записываю в scr то,
-// что вернет create object url

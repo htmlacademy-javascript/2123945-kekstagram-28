@@ -73,7 +73,7 @@ const hideSlider = () => {
   sliderContainerElement.classList.add('hidden');
 };
 
-// Функция, которая обрабатывает события слайдера (метод .updateOptions - срабатывает при инициализации слайдера - 118 строка)
+// Функция, которая обрабатывает события слайдера (метод .updateOptions - срабатывает при инициализации слайдера)
 const updateSlider = () => {
   sliderElement.noUiSlider.updateOptions({
     range: {

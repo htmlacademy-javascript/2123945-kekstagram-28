@@ -1,4 +1,5 @@
 const PICTURES_COUNT = 10;
+
 const Filter = {
   DEFAULT: 'filter-default',
   RANDOM: 'filter-random',
@@ -6,6 +7,7 @@ const Filter = {
 };
 
 const filterElement = document.querySelector('.img-filters');
+
 let currentFilter = Filter.DEFAULT;
 let pictures = [];
 
@@ -47,10 +49,10 @@ const setOnFilterClick = (callback) => {
 };
 
 // вызываем один раз при загрузке
-const init = (loadedPictures, callback) => {
+const initFilters = (loadedPictures, callback) => {
   filterElement.classList.remove('img-filters--inactive');
   pictures = [...loadedPictures];
   setOnFilterClick(callback);
 };
 
-export { init, getFilteredPictures };
+export { initFilters, getFilteredPictures };

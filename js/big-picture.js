@@ -9,7 +9,7 @@ const commentList = document.querySelector('.social__comments');
 const commentsLoader = document.querySelector('.comments-loader');
 const body = document.querySelector('body');
 const cancelButton = document.querySelector('.big-picture__cancel');
-const smallPictures = document.querySelectorAll('.effects__item');
+const smallPictures = document.querySelectorAll('.img-upload__effects img');
 
 const createComment = ({ avatar, name, message }) => {
   const comment = document.createElement('li');

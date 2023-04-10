@@ -2,6 +2,15 @@ const FILE_TYPES = ['gif', 'jpeg', 'jpg', 'png'];
 
 const fileField = document.querySelector('#upload-file');
 const preview = document.querySelector('.img-upload__preview img');
+const smallPictures = document.querySelectorAll('.effects__preview');
+
+const filterSmallPictures = (fileUrl) => {
+  if (smallPictures.length) {
+    smallPictures.forEach((smallPicture) => {
+      smallPicture.style = `background-image: url(${fileUrl})`;
+    });
+  }
+};
 
 fileField.addEventListener('change', () => {
   const file = fileField.files[0];
@@ -9,6 +18,8 @@ fileField.addEventListener('change', () => {
 
   const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
   if (matches) {
-    preview.src = URL.createObjectURL(file);
+    const fileUrl = URL.createObjectURL(file);
+    preview.src = fileUrl;
+    filterSmallPictures(fileUrl);
   }
 });

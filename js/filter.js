@@ -47,10 +47,10 @@ const setOnFilterClick = (callback) => {
 };
 
 // вызываем один раз при загрузке
-const init = (loadedPictures, callback) => {
+const initFilters = (loadedPictures, callback) => {
   filterElement.classList.remove('img-filters--inactive');
   pictures = [...loadedPictures];
   setOnFilterClick(callback);
 };
 
-export { init, getFilteredPictures };
+export { initFilters, getFilteredPictures };

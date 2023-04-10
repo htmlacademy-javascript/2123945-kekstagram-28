@@ -101,7 +101,7 @@ const unblockButton = () => {
   const blockBtn = document.getElementById('upload-submit');
   blockBtn.textContent = 'Опубликовать';
   blockBtn.disable = false;
-  blockBtn.removeAttribute('disabled', 'false');
+  blockBtn.removeAttribute('disabled');
 };
 
 const onFormSubmit = async(evt) => {

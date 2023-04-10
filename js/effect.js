@@ -112,7 +112,6 @@ const onSliderUpdate = () => {
 };
 
 const resetEffects = () => {
-  // зачем сбрасывать? чтобы потом обновить?
   chosenEffect = DEFAULT_EFFECT;
   updateSlider();
 };

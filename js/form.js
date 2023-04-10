@@ -47,12 +47,11 @@ const isTextFieldFocused = () =>
   document.activeElement === hashtagField ||
   document.activeElement === commentField;
 
-const errorMessageElement = document
-  .querySelector('#error')
-  .content.querySelector('.error');
+const existMessageElement = () =>
+  document.querySelector('.error');
 
 function onDocumentKeydown(evt) {
-  if (evt.key === 'Escape' && !isTextFieldFocused() && errorMessageElement()) {
+  if (evt.key === 'Escape' && !isTextFieldFocused() && !existMessageElement()) {
     evt.preventDefault();
     hideModal();
   }
@@ -64,10 +63,6 @@ const onCancelButtonClick = () => {
 
 const onFileInputChange = () => {
   showModal();
-};
-
-const onFormButtonClick = () => {
-  hideModal();
 };
 
 // Проверяет каждый тег на соответствие регулярному выражению
@@ -100,7 +95,6 @@ const blockButton = () => {
   blockBtn.textContent = 'Загружаем...';
   blockBtn.disable = true;
   blockBtn.setAttribute('disabled', 'true');
-  // почему все равно можно кликать по ней во время отправки?
 };
 
 const unblockButton = () => {

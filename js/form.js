@@ -30,7 +30,8 @@ const pristine = new Pristine(form, {
 const showModal = () => {
   overlay.classList.remove('hidden');
   body.classList.add('modal-open');
-  document.addEventListener('keydown', onDocumentKeydown);
+  document.body.addEventListener('keydown', onDocumentKeydown);
+  resetScale();
 };
 
 const hideModal = () => {
@@ -40,7 +41,7 @@ const hideModal = () => {
   pristine.reset();
   overlay.classList.add('hidden');
   body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onDocumentKeydown);
+  document.body.removeEventListener('keydown', onDocumentKeydown);
 };
 
 const isTextFieldFocused = () =>

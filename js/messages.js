@@ -30,6 +30,8 @@ const onSuccessClickOutside = (evt) => {
   const successMessageInner = successMessageElement.querySelector('.success__inner');
   if (!successMessageInner.contains(evt.target)) {
     hideSuccessMessage();
+    document.removeEventListener('click', onSuccessClickOutside);
+    document.removeEventListener('keydown', onDocumentKeydown);
   }
 };
 
@@ -37,6 +39,8 @@ const onErrorClickOutside = (evt) => {
   const errorMessageInner = errorMessageElement.querySelector('.error__inner');
   if (!errorMessageInner.contains(evt.target)) {
     hideErrorMessage();
+    document.removeEventListener('click', onErrorClickOutside);
+    document.removeEventListener('keydown', onDocumentKeydown);
   }
 };
 
@@ -59,6 +63,9 @@ function onDocumentKeydown(evt) {
     evt.stopPropagation();
     hideSuccessMessage();
     hideErrorMessage();
+    document.removeEventListener('keydown', onDocumentKeydown);
+    document.removeEventListener('click', onSuccessClickOutside);
+    document.removeEventListener('click', onErrorClickOutside);
   }
 }
 

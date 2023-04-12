@@ -32,6 +32,7 @@ const renderComments = () => {
     commentsLoader.classList.remove('hidden');
   }
 
+
   const fragment = document.createDocumentFragment();
   for (let i = 0; i < commentsShown; i++) {
     const commentElement = createComment(comments[i]);

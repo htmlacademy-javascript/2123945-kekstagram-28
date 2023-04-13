@@ -18,14 +18,6 @@ const hideErrorMessage = () => {
 
 const errorButton = errorMessageElement.querySelector('.error__button');
 
-const onSuccessButtonClick = () => {
-  hideSuccessMessage();
-};
-
-const onErrorButtonClick = () => {
-  hideErrorMessage();
-};
-
 const onSuccessClickOutside = (evt) => {
   const successMessageInner = successMessageElement.querySelector('.success__inner');
   if (!successMessageInner.contains(evt.target)) {
@@ -42,6 +34,18 @@ const onErrorClickOutside = (evt) => {
     document.removeEventListener('click', onErrorClickOutside);
     document.removeEventListener('keydown', onDocumentKeydown);
   }
+};
+
+const onSuccessButtonClick = () => {
+  hideSuccessMessage();
+  document.removeEventListener('keydown', onDocumentKeydown);
+  document.removeEventListener('click', onSuccessClickOutside);
+};
+
+const onErrorButtonClick = () => {
+  hideErrorMessage();
+  document.removeEventListener('keydown', onDocumentKeydown);
+  document.removeEventListener('click', onErrorClickOutside);
 };
 
 const showSuccessMessage = () => {

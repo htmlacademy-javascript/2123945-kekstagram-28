@@ -8,7 +8,7 @@ let pictures = [];
 const onPictureClick = (evt) => {
   //находит ближайший к курсору элемент с [data-thumbnail-id]
   const thumbnail = evt.target.closest('[data-thumbnail-id]');
-  // если клик мимо - то прекращаем работу функции
+  // если клик мимо - прекращаем работу функции
   if(!thumbnail) {
     return;
   }
